@@ -1,5 +1,6 @@
 import {MouseEvent} from "react";
 
+// eslint-disable-next-line no-shadow
 export enum RenderObjectTypes {
     TEXT = "TEXT",
     ARC = "ARC",
