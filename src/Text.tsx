@@ -1,12 +1,13 @@
-import React, {useContext, useEffect} from 'react';
+import {useContext, useEffect} from 'react';
 import {nanoid} from "nanoid";
 
 import {CanvasContext} from "./Context";
+import {IDrawPipeline} from "./DrawPipeline";
 
 const ID = nanoid();
 
 const Text = () => {
-    const drawPipeline = useContext(CanvasContext);
+    const drawPipeline = useContext(CanvasContext) as IDrawPipeline;
     useEffect(() => {
         console.log('text');
         drawPipeline.addPipe({
@@ -17,7 +18,7 @@ const Text = () => {
                 ctx.strokeText("Hello world", 50, 100);
             }
         });
-    }, []);
+    }, [drawPipeline]);
     return null;
 };
 

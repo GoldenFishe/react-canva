@@ -1,7 +1,8 @@
-import React, {FC, useContext, useEffect} from 'react';
+import {FC, useContext, useEffect} from 'react';
 import {nanoid} from "nanoid";
 
 import {CanvasContext} from "./Context";
+import {IDrawPipeline} from "./DrawPipeline";
 
 const ID = nanoid();
 
@@ -13,7 +14,7 @@ interface IProps {
 }
 
 const Rect: FC<IProps> = ({x, y, width, height}) => {
-    const drawPipeline = useContext(CanvasContext);
+    const drawPipeline = useContext(CanvasContext) as IDrawPipeline;
     useEffect(() => {
         console.log('rect');
         drawPipeline.addPipe({
@@ -23,7 +24,7 @@ const Rect: FC<IProps> = ({x, y, width, height}) => {
                 ctx.fill();
             }
         });
-    }, [x, y, width, height]);
+    }, [x, y, width, height, drawPipeline]);
     return null;
 };
 

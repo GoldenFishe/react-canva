@@ -11,7 +11,7 @@ export interface IDrawPipeline {
 }
 
 export class DrawPipeline implements IDrawPipeline {
-    ctx: CanvasRenderingContext2D | null;
+    ctx: CanvasRenderingContext2D;
     pipes: Array<Pipe>;
 
     constructor(ctx: CanvasRenderingContext2D) {
