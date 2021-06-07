@@ -21,6 +21,11 @@ module.exports = {
         "react",
         "@typescript-eslint"
     ],
+    "settings": {
+        "react": {
+            "version": "16.8.0"
+        }
+    },
     "rules": {
         "accessor-pairs": "error",
         "array-bracket-newline": "error",

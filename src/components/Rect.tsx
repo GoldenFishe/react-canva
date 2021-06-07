@@ -7,6 +7,8 @@ import {BaseProps} from "./Canvas";
 import {RenderObject, RenderObjectTypes} from "../RenderObject";
 
 interface RectProps extends BaseProps {
+    x: number;
+    y: number;
     width: number;
     height: number;
 }
@@ -23,7 +25,6 @@ const Rect: FC<RectProps> = ({
     const renderManager = useContext(RenderContext) as IRenderManager;
     const ID = useRef(nanoid());
     useEffect(() => {
-        console.log("rect");
         const path = new Path2D();
         const id = ID.current;
         const draw = (ctx: CanvasRenderingContext2D) => {

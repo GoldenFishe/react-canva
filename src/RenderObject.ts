@@ -1,18 +1,18 @@
 import {MouseEvent} from "react";
 
-// eslint-disable-next-line no-shadow
-export enum RenderObjectTypes {
-    TEXT = "TEXT",
-    ARC = "ARC",
-    RECT = "RECT"
-}
-
 export interface IRenderObject {
     id: string;
     type: RenderObjectTypes,
     draw: (ctx: CanvasRenderingContext2D) => void;
     path: Path2D;
     onClick?: (e: MouseEvent, object: IRenderObject) => void;
+}
+
+export enum RenderObjectTypes {
+    TEXT = "TEXT",
+    ARC = "ARC",
+    RECT = "RECT",
+    LINE = "LINE"
 }
 
 export class RenderObject implements IRenderObject {

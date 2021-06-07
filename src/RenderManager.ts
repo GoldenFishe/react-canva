@@ -34,6 +34,7 @@ export class RenderManager implements IRenderManager {
         this.clear();
         for (let i = 0; i < this.objects.length; i++) {
             const object = this.objects[i];
+            this.resetStyle();
             object.draw(this.ctx);
         }
     }
@@ -44,11 +45,22 @@ export class RenderManager implements IRenderManager {
             const object = this.objects[i];
             if (object.path && object.onClick) {
                 const pointInPath = this.ctx.isPointInPath(object.path, offsetX, offsetY);
-                if (pointInPath) {
+                const pointInStroke = this.ctx.isPointInStroke(object.path, offsetX, offsetY);
+                if (pointInPath || pointInStroke) {
                     object.onClick(event, object);
                 }
             }
         }
+    }
+
+    resetStyle(): void {
+        this.ctx.strokeStyle = "#000";
+        this.ctx.fillStyle = "#000";
+        this.ctx.lineCap = "butt";
+        this.ctx.lineDashOffset = 0.0;
+        this.ctx.lineJoin = "miter";
+        this.ctx.lineWidth = 1.0;
+        this.ctx.miterLimit = 10.0;
     }
 
     private clear() {

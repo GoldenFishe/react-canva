@@ -7,6 +7,8 @@ import {IRenderManager} from "../RenderManager";
 import {RenderObject, RenderObjectTypes} from "../RenderObject";
 
 interface ArcProps extends BaseProps {
+    x: number;
+    y: number;
     radius: number;
     startAngle: number;
     endAngle: number;
@@ -27,7 +29,6 @@ const Arc: FC<ArcProps> = ({
     const renderManager = useContext(RenderContext) as IRenderManager;
     const ID = useRef(nanoid());
     useEffect(() => {
-        console.log("arc");
         const path = new Path2D();
         const id = ID.current;
         const draw = (ctx: CanvasRenderingContext2D) => {

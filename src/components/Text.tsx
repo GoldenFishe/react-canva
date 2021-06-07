@@ -7,13 +7,17 @@ import {BaseProps} from "./Canvas";
 import {RenderObject, RenderObjectTypes} from "../RenderObject";
 
 interface TextProps extends BaseProps {
+    x: number;
+    y: number;
     text: string;
+    font: string;
 }
 
 const Text: FC<TextProps> = ({
                                  x,
                                  y,
                                  text,
+                                 font,
                                  stroke,
                                  fill,
                                  onClick
@@ -21,24 +25,23 @@ const Text: FC<TextProps> = ({
     const renderManager = useContext(RenderContext) as IRenderManager;
     const ID = useRef(nanoid());
     useEffect(() => {
-        console.log("text");
         const path = new Path2D();
         const id = ID.current;
         const draw = (ctx: CanvasRenderingContext2D) => {
-            ctx.font = "48px serif";
+            ctx.font = font;
             const {width, actualBoundingBoxAscent} = ctx.measureText(text);
             path.rect(x, y - actualBoundingBoxAscent, width, actualBoundingBoxAscent);
-            ctx.strokeStyle = "rgba(0, 0, 0, 0)";
-            ctx.stroke(path);
             if (stroke) {
+                ctx.strokeStyle = stroke;
                 ctx.strokeText(text, x, y);
             }
             if (fill) {
+                ctx.fillStyle = fill;
                 ctx.fillText(text, x, y);
             }
         };
         renderManager.addObject(new RenderObject(id, RenderObjectTypes.TEXT, draw, path, onClick));
-    }, [stroke, fill, renderManager, onClick, x, y, text]);
+    }, [font, text, stroke, fill, renderManager, onClick, x, y]);
     return null;
 };
 

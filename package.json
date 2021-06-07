@@ -1,15 +1,22 @@
 {
   "name": "react-canva",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "rollup -c -w",
-    "lint": "eslint src/"
+    "build:watch": "rollup -c -w",
+    "build": "rollup -c",
+    "lint": "eslint src/*",
+    "test:typings": "tsc --noEmit"
   },
-  "keywords": [],
+  "keywords": ["react", "canvas", "canva", "jsx"],
+  "bugs": "https://github.com/GoldenFishe/react-canva/issues",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:GoldenFishe/react-canva.git"
+  },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",

@@ -5,10 +5,13 @@ import {RenderManager} from "../RenderManager";
 import {IRenderObject} from "../RenderObject";
 
 export interface BaseProps {
-    x: number;
-    y: number;
     stroke?: string;
     fill?: string;
+    lineCap?: CanvasLineCap;
+    lineDashOffset?: number;
+    lineJoin?: CanvasLineJoin;
+    lineWidth?: number;
+    miterLimit?: number;
     onClick?: (e: MouseEvent, object: IRenderObject) => void;
 }
 
