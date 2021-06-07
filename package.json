@@ -1,7 +1,7 @@
 {
   "name": "react-canva",
   "version": "0.0.1",
-  "description": "",
+  "description": "<canvas> rendering for React",
   "main": "./dist/index.js",
   "scripts": {
     "build:watch": "rollup -c -w",
@@ -15,7 +15,8 @@
     "type": "git",
     "url": "git@github.com:GoldenFishe/react-canva.git"
   },
-  "author": "",
+  "author": "Riazanov Anton <ag.riazanov@gmail.com>",
+  "homepage": "https://github.com/GoldenFishe/react-canva",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.14.0",
