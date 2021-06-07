@@ -1,5 +1,5 @@
 # React-Canva
-
+![npm bundle size](https://img.shields.io/bundlephobia/min/react-canva?color=green)
 #### (Project in development)
 
 React-Canva is a JavaScript library for drawing complex canvas graphics using
@@ -18,8 +18,8 @@ npm install react-canva --save
 ## Example
 
 ```javascript
-import React from 'react';
-import {render} from 'react-dom';
+import React from "react";
+import {render} from "react-dom";
 import {Canvas, Text, Rect, Arc, Line} from "react-canva";
 
 const App = () => {
