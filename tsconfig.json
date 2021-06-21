@@ -7,14 +7,18 @@
       "dom.iterable",
       "esnext"
     ],
-    "sourceMap": true,
+    "sourceMap": false,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./"
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "demo"
   ],
   "extends": "@tsconfig/recommended/tsconfig.json"
 }

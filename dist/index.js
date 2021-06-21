@@ -67,7 +67,6 @@
         return RenderManager;
     }());
 
-    // eslint-disable-next-line react/prop-types
     var Canvas = function (_a) {
         var children = _a.children;
         var canvasRef = React.useRef(null);
@@ -215,12 +214,29 @@
         return null;
     };
 
+    var Line = function (_a) {
+        var x1 = _a.x1, y1 = _a.y1, x2 = _a.x2, y2 = _a.y2, stroke = _a.stroke, fill = _a.fill, onClick = _a.onClick;
+        var renderManager = React.useContext(RenderContext);
+        var ID = React.useRef(nanoid());
+        React.useEffect(function () {
+            var path = new Path2D();
+            var id = ID.current;
+            var draw = function (ctx) {
+                path.moveTo(x1, y1);
+                path.lineTo(x2, y2);
+                ctx.stroke(path);
+            };
+            renderManager.addObject(new RenderObject(id, RenderObjectTypes.LINE, draw, path, onClick));
+        }, [x1, y1, x2, y2, stroke, fill, onClick, renderManager]);
+        return null;
+    };
+
     exports.Arc = Arc;
     exports.Canvas = Canvas;
+    exports.Line = Line;
     exports.Rect = Rect;
     exports.Text = Text;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
-//# sourceMappingURL=index.js.map

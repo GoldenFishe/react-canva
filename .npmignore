@@ -1,0 +1,8 @@
+docs
+demo
+node_modules
+.idea
+rollup.config.js
+tsconfig.json
+.eslint.rc
+src

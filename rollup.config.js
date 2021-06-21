@@ -9,7 +9,7 @@ export default {
         file: "./dist/index.js",
         name: "react-canva",
         format: "umd",
-        sourcemap: true,
+        sourcemap: false,
         globals: {
             "react": "React"
         }

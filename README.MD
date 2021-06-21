@@ -2,6 +2,8 @@
 ![npm bundle size](https://img.shields.io/bundlephobia/min/react-canva?color=green)
 #### (Project in development)
 
+#[Demo](https://goldenfishe.github.io/react-canva/)
+
 React-Canva is a JavaScript library for drawing complex canvas graphics using
 [React](http://facebook.github.io/react/).
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState, FC, ReactNode, MouseEvent} from "react";
+import React, {useEffect, useMemo, useRef, useState, FC, MouseEvent} from "react";
 
 import {RenderContext} from "../RenderContext";
 import {RenderManager} from "../RenderManager";
@@ -15,12 +15,7 @@ export interface BaseProps {
     onClick?: (e: MouseEvent, object: IRenderObject) => void;
 }
 
-interface CanvasProps {
-    children: ReactNode
-}
-
-// eslint-disable-next-line react/prop-types
-const Canvas: FC<CanvasProps> = ({children}) => {
+const Canvas: FC = ({children}) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
     const renderManager = useMemo(() => {
