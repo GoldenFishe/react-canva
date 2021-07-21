@@ -1,12 +1,4 @@
-import {MouseEvent} from "react";
-
-export interface IRenderObject {
-    id: string;
-    type: RenderObjectTypes,
-    draw: (ctx: CanvasRenderingContext2D) => void;
-    path: Path2D;
-    onClick?: (e: MouseEvent, object: IRenderObject) => void;
-}
+import {Events} from "./Types";
 
 export enum RenderObjectTypes {
     TEXT = "TEXT",
@@ -15,24 +7,32 @@ export enum RenderObjectTypes {
     LINE = "LINE"
 }
 
+export interface IRenderObject {
+    id: string;
+    type: RenderObjectTypes,
+    draw: (ctx: CanvasRenderingContext2D) => void;
+    path: Path2D;
+    events: Events;
+}
+
 export class RenderObject implements IRenderObject {
     id: string;
     type: RenderObjectTypes;
     draw: (ctx: CanvasRenderingContext2D) => void;
     path: Path2D;
-    onClick?: (e: MouseEvent, object: IRenderObject) => void;
+    events: Events;
 
     constructor(
         id: string,
         type: RenderObjectTypes,
         draw: (ctx: CanvasRenderingContext2D) => void,
         path: Path2D,
-        onClick?: (e: MouseEvent, object: IRenderObject) => void
+        events: Events
     ) {
         this.id = id;
         this.type = type;
         this.draw = draw;
         this.path = path;
-        this.onClick = onClick;
+        this.events = events;
     }
 }

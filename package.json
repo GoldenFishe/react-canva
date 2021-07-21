@@ -1,6 +1,6 @@
 {
   "name": "react-canva",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "<canvas> rendering for React",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -8,7 +8,7 @@
     "build:watch": "rollup -c -w",
     "build": "rollup -c",
     "lint": "eslint src/*",
-    "test:typings": "tsc --noEmit"
+    "lint:fix": "eslint src/* --fix"
   },
   "keywords": [
     "react",
@@ -25,24 +25,28 @@
   "homepage": "https://github.com/GoldenFishe/react-canva",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.14.0",
-    "@babel/preset-env": "^7.14.1",
-    "@babel/preset-react": "^7.13.13",
-    "@rollup/plugin-commonjs": "^19.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.0",
-    "@rollup/plugin-typescript": "^8.2.1",
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "@rollup/plugin-commonjs": "^19.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.2",
+    "@rollup/plugin-typescript": "^8.2.3",
     "@tsconfig/recommended": "^1.0.1",
     "@types/react": "^16.8.0",
     "@types/react-dom": "^16.8.0",
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "@typescript-eslint/parser": "^4.26.0",
-    "eslint": "^7.28.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "eslint": "^7.31.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "nanoid": "^3.1.22",
-    "rollup": "^2.47.0",
+    "rollup": "^2.53.3",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "tslib": "^2.2.0",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.5"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   }
 }

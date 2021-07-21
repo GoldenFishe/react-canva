@@ -1,6 +1,6 @@
-import { FC, MouseEvent } from "react";
-import { IRenderObject } from "../RenderObject";
-export interface BaseProps {
+import { FC } from "react";
+import { Events } from "../Types";
+export interface BaseProps extends Events {
     stroke?: string;
     fill?: string;
     lineCap?: CanvasLineCap;
@@ -8,7 +8,6 @@ export interface BaseProps {
     lineJoin?: CanvasLineJoin;
     lineWidth?: number;
     miterLimit?: number;
-    onClick?: (e: MouseEvent, object: IRenderObject) => void;
 }
 declare const Canvas: FC;
 export default Canvas;

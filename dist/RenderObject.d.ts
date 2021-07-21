@@ -1,22 +1,22 @@
-import { MouseEvent } from "react";
-export interface IRenderObject {
-    id: string;
-    type: RenderObjectTypes;
-    draw: (ctx: CanvasRenderingContext2D) => void;
-    path: Path2D;
-    onClick?: (e: MouseEvent, object: IRenderObject) => void;
-}
+import { Events } from "./Types";
 export declare enum RenderObjectTypes {
     TEXT = "TEXT",
     ARC = "ARC",
     RECT = "RECT",
     LINE = "LINE"
 }
+export interface IRenderObject {
+    id: string;
+    type: RenderObjectTypes;
+    draw: (ctx: CanvasRenderingContext2D) => void;
+    path: Path2D;
+    events: Events;
+}
 export declare class RenderObject implements IRenderObject {
     id: string;
     type: RenderObjectTypes;
     draw: (ctx: CanvasRenderingContext2D) => void;
     path: Path2D;
-    onClick?: (e: MouseEvent, object: IRenderObject) => void;
-    constructor(id: string, type: RenderObjectTypes, draw: (ctx: CanvasRenderingContext2D) => void, path: Path2D, onClick?: (e: MouseEvent, object: IRenderObject) => void);
+    events: Events;
+    constructor(id: string, type: RenderObjectTypes, draw: (ctx: CanvasRenderingContext2D) => void, path: Path2D, events: Events);
 }

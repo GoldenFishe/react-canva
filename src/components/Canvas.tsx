@@ -1,10 +1,10 @@
-import React, {useEffect, useMemo, useRef, useState, FC, MouseEvent} from "react";
+import React, {FC, useEffect, useMemo, useRef, useState} from "react";
 
 import {RenderContext} from "../RenderContext";
 import {RenderManager} from "../RenderManager";
-import {IRenderObject} from "../RenderObject";
+import {Events} from "../Types";
 
-export interface BaseProps {
+export interface BaseProps extends Events {
     stroke?: string;
     fill?: string;
     lineCap?: CanvasLineCap;
@@ -12,7 +12,6 @@ export interface BaseProps {
     lineJoin?: CanvasLineJoin;
     lineWidth?: number;
     miterLimit?: number;
-    onClick?: (e: MouseEvent, object: IRenderObject) => void;
 }
 
 const Canvas: FC = ({children}) => {
@@ -42,8 +41,50 @@ const Canvas: FC = ({children}) => {
     return (
         <>
             <canvas ref={canvasRef}
-                    style={{width: "100%", height: "100%"}}
-                    onClick={renderManager?.onClick.bind(renderManager)}>
+                    style={{
+                        width: "100%",
+                        height: "100%"
+                    }}
+                    onAuxClick={renderManager?.onEvent("onAuxClick")}
+                    onAuxClickCapture={renderManager?.onEvent("onAuxClickCapture")}
+                    onClick={renderManager?.onEvent("onClick")}
+                    onClickCapture={renderManager?.onEvent("onClickCapture")}
+                    onContextMenu={renderManager?.onEvent("onContextMenu")}
+                    onContextMenuCapture={renderManager?.onEvent("onContextMenuCapture")}
+                    onDoubleClick={renderManager?.onEvent("onDoubleClick")}
+                    onDoubleClickCapture={renderManager?.onEvent("onDoubleClickCapture")}
+                    onMouseDown={renderManager?.onEvent("onMouseDown")}
+                    onMouseDownCapture={renderManager?.onEvent("onMouseDownCapture")}
+                    onMouseEnter={renderManager?.onEvent("onMouseEnter")}
+                    onMouseLeave={renderManager?.onEvent("onMouseLeave")}
+                    onMouseMove={renderManager?.onEvent("onMouseMove")}
+                    onMouseMoveCapture={renderManager?.onEvent("onMouseMoveCapture")}
+                    onMouseOut={renderManager?.onEvent("onMouseOut")}
+                    onMouseOutCapture={renderManager?.onEvent("onMouseOutCapture")}
+                    onMouseOver={renderManager?.onEvent("onMouseOver")}
+                    onMouseOverCapture={renderManager?.onEvent("onMouseOverCapture")}
+                    onMouseUp={renderManager?.onEvent("onMouseUp")}
+                    onMouseUpCapture={renderManager?.onEvent("onMouseUpCapture")}
+                    onPointerDown={renderManager?.onEvent("onPointerDown")}
+                    onPointerDownCapture={renderManager?.onEvent("onPointerDownCapture")}
+                    onPointerMove={renderManager?.onEvent("onPointerMove")}
+                    onPointerMoveCapture={renderManager?.onEvent("onPointerMoveCapture")}
+                    onPointerUp={renderManager?.onEvent("onPointerUp")}
+                    onPointerUpCapture={renderManager?.onEvent("onPointerUpCapture")}
+                    onPointerCancel={renderManager?.onEvent("onPointerCancel")}
+                    onPointerCancelCapture={renderManager?.onEvent("onPointerCancelCapture")}
+                    onPointerEnter={renderManager?.onEvent("onPointerEnter")}
+                    onPointerEnterCapture={renderManager?.onEvent("onPointerEnterCapture")}
+                    onPointerLeave={renderManager?.onEvent("onPointerLeave")}
+                    onPointerLeaveCapture={renderManager?.onEvent("onPointerLeaveCapture")}
+                    onPointerOver={renderManager?.onEvent("onPointerOver")}
+                    onPointerOverCapture={renderManager?.onEvent("onPointerOverCapture")}
+                    onPointerOut={renderManager?.onEvent("onPointerOut")}
+                    onPointerOutCapture={renderManager?.onEvent("onPointerOutCapture")}
+                    onGotPointerCapture={renderManager?.onEvent("onGotPointerCapture")}
+                    onGotPointerCaptureCapture={renderManager?.onEvent("onGotPointerCaptureCapture")}
+                    onLostPointerCapture={renderManager?.onEvent("onLostPointerCapture")}
+                    onLostPointerCaptureCapture={renderManager?.onEvent("onLostPointerCaptureCapture")}>
                 Извините, ваш браузер нет поддерживает&lt;canvas&gt; элемент.
             </canvas>
             {ctx ? <RenderContext.Provider value={renderManager}>{children}</RenderContext.Provider> : null}

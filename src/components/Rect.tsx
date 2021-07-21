@@ -2,9 +2,9 @@ import {FC, useContext, useEffect, useRef} from "react";
 import {nanoid} from "nanoid";
 
 import {RenderContext} from "../RenderContext";
-import {IRenderManager} from "../RenderManager";
 import {BaseProps} from "./Canvas";
 import {RenderObject, RenderObjectTypes} from "../RenderObject";
+import {getEventHandlersFromProps} from "../utils";
 
 interface RectProps extends BaseProps {
     x: number;
@@ -13,17 +13,18 @@ interface RectProps extends BaseProps {
     height: number;
 }
 
-const Rect: FC<RectProps> = ({
-                                 x,
-                                 y,
-                                 width,
-                                 height,
-                                 stroke,
-                                 fill,
-                                 onClick
-                             }) => {
-    const renderManager = useContext(RenderContext) as IRenderManager;
+const Rect: FC<RectProps> = (props) => {
+    const {
+        x,
+        y,
+        width,
+        height,
+        stroke,
+        fill
+    } = props;
+    const renderManager = useContext(RenderContext);
     const ID = useRef(nanoid());
+    const events = getEventHandlersFromProps<RectProps>(props);
     useEffect(() => {
         const path = new Path2D();
         const id = ID.current;
@@ -38,8 +39,8 @@ const Rect: FC<RectProps> = ({
                 ctx.fill(path);
             }
         };
-        renderManager.addObject(new RenderObject(id, RenderObjectTypes.RECT, draw, path, onClick));
-    }, [x, y, width, height, fill, stroke, renderManager, onClick]);
+        renderManager?.addObject(new RenderObject(id, RenderObjectTypes.RECT, draw, path, events));
+    }, [events, fill, height, renderManager, stroke, width, x, y]);
     return null;
 };
 

@@ -1,13 +1,12 @@
-import {MouseEvent} from "react";
-
 import {IRenderObject} from "./RenderObject";
+import {EventName, Event} from "./Types";
 
 export interface IRenderManager {
     ctx: CanvasRenderingContext2D | null;
     objects: Array<IRenderObject>;
     addObject: (pipe: IRenderObject) => void;
     draw: () => void;
-    onClick: (e: MouseEvent) => void;
+    onEvent: (eventName: EventName) => (event: Event) => void;
 }
 
 export class RenderManager implements IRenderManager {
@@ -39,18 +38,30 @@ export class RenderManager implements IRenderManager {
         }
     }
 
-    onClick(event: MouseEvent): void {
-        const {offsetX, offsetY} = event.nativeEvent;
-        for (let i = 0; i < this.objects.length; i++) {
-            const object = this.objects[i];
-            if (object.path && object.onClick) {
-                const pointInPath = this.ctx.isPointInPath(object.path, offsetX, offsetY);
-                const pointInStroke = this.ctx.isPointInStroke(object.path, offsetX, offsetY);
-                if (pointInPath || pointInStroke) {
-                    object.onClick(event, object);
+    onEvent(eventName: EventName): (event: Event) => void {
+        const self = this;
+        return function eventHandler (event: Event) {
+            const {
+                offsetX,
+                offsetY
+            } = event.nativeEvent;
+            for (let i = 0; i < self.objects.length; i++) {
+                const object = self.objects[i];
+                const eventHandler = object.events[eventName];
+                if (object.path && eventHandler) {
+                    const pointInPath = self.ctx.isPointInPath(object.path, offsetX, offsetY);
+                    const pointInStroke = self.ctx.isPointInStroke(object.path, offsetX, offsetY);
+                    if (pointInPath || pointInStroke) {
+                        eventHandler({
+                            id: object.id,
+                            type: object.type,
+                            eventType: eventName,
+                            event
+                        });
+                    }
                 }
             }
-        }
+        };
     }
 
     resetStyle(): void {

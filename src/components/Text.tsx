@@ -2,9 +2,9 @@ import {FC, useContext, useEffect, useRef} from "react";
 import {nanoid} from "nanoid";
 
 import {RenderContext} from "../RenderContext";
-import {IRenderManager} from "../RenderManager";
 import {BaseProps} from "./Canvas";
 import {RenderObject, RenderObjectTypes} from "../RenderObject";
+import {getEventHandlersFromProps} from "../utils";
 
 interface TextProps extends BaseProps {
     x: number;
@@ -13,23 +13,27 @@ interface TextProps extends BaseProps {
     font: string;
 }
 
-const Text: FC<TextProps> = ({
-                                 x,
-                                 y,
-                                 text,
-                                 font,
-                                 stroke,
-                                 fill,
-                                 onClick
-                             }) => {
-    const renderManager = useContext(RenderContext) as IRenderManager;
+const Text: FC<TextProps> = (props) => {
+    const {
+        x,
+        y,
+        text,
+        font,
+        stroke,
+        fill
+    } = props;
+    const renderManager = useContext(RenderContext);
     const ID = useRef(nanoid());
+    const events = getEventHandlersFromProps<TextProps>(props);
     useEffect(() => {
         const path = new Path2D();
         const id = ID.current;
         const draw = (ctx: CanvasRenderingContext2D) => {
             ctx.font = font;
-            const {width, actualBoundingBoxAscent} = ctx.measureText(text);
+            const {
+                width,
+                actualBoundingBoxAscent
+            } = ctx.measureText(text);
             path.rect(x, y - actualBoundingBoxAscent, width, actualBoundingBoxAscent);
             if (stroke) {
                 ctx.strokeStyle = stroke;
@@ -40,8 +44,8 @@ const Text: FC<TextProps> = ({
                 ctx.fillText(text, x, y);
             }
         };
-        renderManager.addObject(new RenderObject(id, RenderObjectTypes.TEXT, draw, path, onClick));
-    }, [font, text, stroke, fill, renderManager, onClick, x, y]);
+        renderManager?.addObject(new RenderObject(id, RenderObjectTypes.TEXT, draw, path, events));
+    }, [events, fill, font, renderManager, stroke, text, x, y]);
     return null;
 };
 

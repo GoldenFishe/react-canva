@@ -3,8 +3,8 @@ import {nanoid} from "nanoid";
 
 import {BaseProps} from "./Canvas";
 import {RenderContext} from "../RenderContext";
-import {IRenderManager} from "../RenderManager";
 import {RenderObject, RenderObjectTypes} from "../RenderObject";
+import {getEventHandlersFromProps} from "../utils";
 
 interface ArcProps extends BaseProps {
     x: number;
@@ -15,19 +15,20 @@ interface ArcProps extends BaseProps {
     anticlockwise?: boolean;
 }
 
-const Arc: FC<ArcProps> = ({
-                               x,
-                               y,
-                               radius,
-                               startAngle,
-                               endAngle,
-                               anticlockwise,
-                               stroke,
-                               fill,
-                               onClick
-                           }) => {
-    const renderManager = useContext(RenderContext) as IRenderManager;
+const Arc: FC<ArcProps> = (props) => {
+    const {
+        x,
+        y,
+        radius,
+        startAngle,
+        endAngle,
+        anticlockwise,
+        stroke,
+        fill
+    } = props;
+    const renderManager = useContext(RenderContext);
     const ID = useRef(nanoid());
+    const events = getEventHandlersFromProps<ArcProps>(props);
     useEffect(() => {
         const path = new Path2D();
         const id = ID.current;
@@ -42,8 +43,8 @@ const Arc: FC<ArcProps> = ({
                 ctx.fill(path);
             }
         };
-        renderManager.addObject(new RenderObject(id, RenderObjectTypes.ARC, draw, path, onClick));
-    }, [x, y, radius, startAngle, endAngle, anticlockwise, stroke, fill, onClick, renderManager]);
+        renderManager?.addObject(new RenderObject(id, RenderObjectTypes.ARC, draw, path, events));
+    }, [anticlockwise, endAngle, events, fill, radius, renderManager, startAngle, stroke, x, y]);
     return null;
 };
 
