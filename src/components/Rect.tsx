@@ -4,9 +4,9 @@ import {nanoid} from "nanoid";
 import {RenderContext} from "../RenderContext";
 import {BaseProps} from "./Canvas";
 import {RenderObject, RenderObjectTypes} from "../RenderObject";
-import {getEventHandlersFromProps} from "../utils";
+import {drawAtCanvas, getEventHandlersFromProps} from "../utils";
 
-interface RectProps extends BaseProps {
+export interface RectProps extends BaseProps {
     x: number;
     y: number;
     width: number;
@@ -27,19 +27,20 @@ const Rect: FC<RectProps> = (props) => {
     const events = getEventHandlersFromProps<RectProps>(props);
     useEffect(() => {
         const path = new Path2D();
-        const id = ID.current;
+        const params = {
+            x,
+            y,
+            width,
+            height,
+            stroke,
+            fill
+        };
         const draw = (ctx: CanvasRenderingContext2D) => {
             path.rect(x, y, width, height);
-            if (stroke) {
-                ctx.strokeStyle = stroke;
-                ctx.stroke(path);
-            }
-            if (fill) {
-                ctx.fillStyle = fill;
-                ctx.fill(path);
-            }
+            drawAtCanvas(ctx, path, stroke, fill);
         };
-        renderManager?.addObject(new RenderObject(id, RenderObjectTypes.RECT, draw, path, events));
+        const renderObject = new RenderObject(ID.current, RenderObjectTypes.RECT, draw, path, events, params);
+        renderManager?.addObject(renderObject);
     }, [events, fill, height, renderManager, stroke, width, x, y]);
     return null;
 };

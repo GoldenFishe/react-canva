@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/react-canva/static/css/main.f5d82244.chunk.css",
-    "main.js": "/react-canva/static/js/main.fdf8531d.chunk.js",
-    "main.js.map": "/react-canva/static/js/main.fdf8531d.chunk.js.map",
+    "main.css": "/react-canva/static/css/main.a63ebda3.chunk.css",
+    "main.js": "/react-canva/static/js/main.05bd806e.chunk.js",
+    "main.js.map": "/react-canva/static/js/main.05bd806e.chunk.js.map",
     "runtime-main.js": "/react-canva/static/js/runtime-main.6e8eed75.js",
     "runtime-main.js.map": "/react-canva/static/js/runtime-main.6e8eed75.js.map",
-    "static/js/2.008a4526.chunk.js": "/react-canva/static/js/2.008a4526.chunk.js",
-    "static/js/2.008a4526.chunk.js.map": "/react-canva/static/js/2.008a4526.chunk.js.map",
+    "static/js/2.2de43f46.chunk.js": "/react-canva/static/js/2.2de43f46.chunk.js",
+    "static/js/2.2de43f46.chunk.js.map": "/react-canva/static/js/2.2de43f46.chunk.js.map",
     "static/js/3.db421b68.chunk.js": "/react-canva/static/js/3.db421b68.chunk.js",
     "static/js/3.db421b68.chunk.js.map": "/react-canva/static/js/3.db421b68.chunk.js.map",
     "index.html": "/react-canva/index.html",
-    "static/css/main.f5d82244.chunk.css.map": "/react-canva/static/css/main.f5d82244.chunk.css.map",
-    "static/js/2.008a4526.chunk.js.LICENSE.txt": "/react-canva/static/js/2.008a4526.chunk.js.LICENSE.txt"
+    "static/css/main.a63ebda3.chunk.css.map": "/react-canva/static/css/main.a63ebda3.chunk.css.map",
+    "static/js/2.2de43f46.chunk.js.LICENSE.txt": "/react-canva/static/js/2.2de43f46.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6e8eed75.js",
-    "static/js/2.008a4526.chunk.js",
-    "static/css/main.f5d82244.chunk.css",
-    "static/js/main.fdf8531d.chunk.js"
+    "static/js/2.2de43f46.chunk.js",
+    "static/css/main.a63ebda3.chunk.css",
+    "static/js/main.05bd806e.chunk.js"
   ]
 }

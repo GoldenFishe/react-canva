@@ -1,6 +1,6 @@
 {
   "name": "react-canva",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "<canvas> rendering for React",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -14,7 +14,8 @@
     "react",
     "canvas",
     "canva",
-    "jsx"
+    "jsx",
+    "react-canva"
   ],
   "bugs": "https://github.com/GoldenFishe/react-canva/issues",
   "repository": {

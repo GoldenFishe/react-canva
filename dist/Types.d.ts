@@ -1,11 +1,20 @@
 import { MouseEvent, PointerEvent } from "react";
 import { IRenderObject } from "./RenderObject";
+import { RectProps } from "./components/Rect";
+import { ArcProps } from "./components/Arc";
+import { LineProps } from "./components/Line";
+import { TextProps } from "./components/Text";
 export declare type EventName = keyof Events;
 export declare type Event = MouseEvent | PointerEvent;
 export declare type EventRenderObject = Pick<IRenderObject, "id" | "type"> & {
     event: Event;
     eventType: EventName;
 };
+export declare type Params = RectParams | ArcParams | LineParams | TextParams;
+export declare type RectParams = Pick<RectProps, "stroke" | "fill">;
+export declare type ArcParams = Pick<ArcProps, "stroke" | "fill">;
+export declare type LineParams = Pick<LineProps, "stroke" | "fill">;
+export declare type TextParams = Pick<TextProps, "stroke" | "fill">;
 export interface Events {
     onAuxClick?: (object: EventRenderObject) => void;
     onAuxClickCapture?: (object: EventRenderObject) => void;

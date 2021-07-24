@@ -4,9 +4,9 @@ import {nanoid} from "nanoid";
 import {BaseProps} from "./Canvas";
 import {RenderContext} from "../RenderContext";
 import {RenderObject, RenderObjectTypes} from "../RenderObject";
-import {getEventHandlersFromProps} from "../utils";
+import {drawAtCanvas, getEventHandlersFromProps} from "../utils";
 
-interface ArcProps extends BaseProps {
+export interface ArcProps extends BaseProps {
     x: number;
     y: number;
     radius: number;
@@ -31,19 +31,21 @@ const Arc: FC<ArcProps> = (props) => {
     const events = getEventHandlersFromProps<ArcProps>(props);
     useEffect(() => {
         const path = new Path2D();
-        const id = ID.current;
+        const params = {
+            x,
+            y,
+            radius,
+            startAngle,
+            endAngle,
+            anticlockwise,
+            stroke,
+            fill
+        };
         const draw = (ctx: CanvasRenderingContext2D) => {
             path.arc(x, y, radius, startAngle, endAngle, anticlockwise);
-            if (stroke) {
-                ctx.strokeStyle = stroke;
-                ctx.stroke(path);
-            }
-            if (fill) {
-                ctx.fillStyle = fill;
-                ctx.fill(path);
-            }
+            drawAtCanvas(ctx, path, stroke, fill);
         };
-        renderManager?.addObject(new RenderObject(id, RenderObjectTypes.ARC, draw, path, events));
+        renderManager?.addObject(new RenderObject(ID.current, RenderObjectTypes.ARC, draw, path, events, params));
     }, [anticlockwise, endAngle, events, fill, radius, renderManager, startAngle, stroke, x, y]);
     return null;
 };

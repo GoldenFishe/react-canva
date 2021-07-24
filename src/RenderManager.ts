@@ -2,16 +2,13 @@ import {IRenderObject} from "./RenderObject";
 import {EventName, Event} from "./Types";
 
 export interface IRenderManager {
-    ctx: CanvasRenderingContext2D | null;
-    objects: Array<IRenderObject>;
     addObject: (pipe: IRenderObject) => void;
-    draw: () => void;
     onEvent: (eventName: EventName) => (event: Event) => void;
 }
 
 export class RenderManager implements IRenderManager {
-    ctx: CanvasRenderingContext2D;
-    objects: Array<IRenderObject>;
+    private readonly ctx: CanvasRenderingContext2D;
+    private readonly objects: Array<IRenderObject>;
 
     constructor(ctx: CanvasRenderingContext2D) {
         this.ctx = ctx;
@@ -29,28 +26,18 @@ export class RenderManager implements IRenderManager {
         this.draw();
     }
 
-    draw(): void {
-        this.clear();
-        for (let i = 0; i < this.objects.length; i++) {
-            const object = this.objects[i];
-            this.resetStyle();
-            object.draw(this.ctx);
-        }
-    }
-
     onEvent(eventName: EventName): (event: Event) => void {
-        const self = this;
-        return function eventHandler (event: Event) {
+        return (event: Event): void => {
             const {
                 offsetX,
                 offsetY
             } = event.nativeEvent;
-            for (let i = 0; i < self.objects.length; i++) {
-                const object = self.objects[i];
+            for (let i = 0; i < this.objects.length; i++) {
+                const object = this.objects[i];
                 const eventHandler = object.events[eventName];
                 if (object.path && eventHandler) {
-                    const pointInPath = self.ctx.isPointInPath(object.path, offsetX, offsetY);
-                    const pointInStroke = self.ctx.isPointInStroke(object.path, offsetX, offsetY);
+                    const pointInPath = this.ctx.isPointInPath(object.path, offsetX, offsetY);
+                    const pointInStroke = this.ctx.isPointInStroke(object.path, offsetX, offsetY);
                     if (pointInPath || pointInStroke) {
                         eventHandler({
                             id: object.id,
@@ -64,7 +51,16 @@ export class RenderManager implements IRenderManager {
         };
     }
 
-    resetStyle(): void {
+    private draw() {
+        this.clear();
+        for (let i = 0; i < this.objects.length; i++) {
+            const object = this.objects[i];
+            this.resetStyle();
+            object.draw(this.ctx);
+        }
+    }
+
+    private resetStyle() {
         this.ctx.strokeStyle = "#000";
         this.ctx.fillStyle = "#000";
         this.ctx.lineCap = "butt";

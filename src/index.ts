@@ -1,7 +1,7 @@
 import Canvas from "./components/Canvas";
 import Rect from "./components/Rect";
-import Text from "./components/Text";
 import Arc from "./components/Arc";
 import Line from "./components/Line";
+import Text from "./components/Text";
 
-export {Canvas, Rect, Text, Arc, Line};
+export {Canvas, Rect, Arc, Text, Line};

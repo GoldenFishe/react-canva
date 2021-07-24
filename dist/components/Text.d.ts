@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { BaseProps } from "./Canvas";
-interface TextProps extends BaseProps {
+export interface TextProps extends BaseProps {
     x: number;
     y: number;
     text: string;

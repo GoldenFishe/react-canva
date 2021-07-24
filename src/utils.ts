@@ -11,3 +11,14 @@ export function getEventHandlersFromProps<T>(props: T): Events {
     }
     return events;
 }
+
+export function drawAtCanvas(ctx: CanvasRenderingContext2D, path: Path2D, stroke?: string, fill?: string): void {
+    if (fill) {
+        ctx.fillStyle = fill;
+        ctx.fill(path);
+    }
+    if (stroke) {
+        ctx.strokeStyle = stroke;
+        ctx.stroke(path);
+    }
+}

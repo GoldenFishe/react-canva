@@ -17,8 +17,7 @@
     "outDir": "./"
   },
   "exclude": [
-    "node_modules",
-    "demo"
+    "node_modules"
   ],
   "extends": "@tsconfig/recommended/tsconfig.json"
 }

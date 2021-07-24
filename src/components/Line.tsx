@@ -1,11 +1,12 @@
 import {FC, useContext, useEffect, useRef} from "react";
-import {RenderContext} from "../RenderContext";
 import {nanoid} from "nanoid";
+
+import {RenderContext} from "../RenderContext";
 import {RenderObject, RenderObjectTypes} from "../RenderObject";
 import {BaseProps} from "./Canvas";
 import {getEventHandlersFromProps} from "../utils";
 
-interface LineProps extends BaseProps {
+export interface LineProps extends BaseProps {
     x1: number;
     y1: number;
     x2: number;
@@ -26,14 +27,21 @@ const Line: FC<LineProps> = (props) => {
     const events = getEventHandlersFromProps<LineProps>(props);
     useEffect(() => {
         const path = new Path2D();
-        const id = ID.current;
+        const params = {
+            x1,
+            y1,
+            x2,
+            y2,
+            stroke,
+            fill
+        };
         const draw = (ctx: CanvasRenderingContext2D) => {
             path.moveTo(x1, y1);
             path.lineTo(x2, y2);
             ctx.stroke(path);
         };
-        renderManager?.addObject(new RenderObject(id, RenderObjectTypes.LINE, draw, path, events));
-    }, [events, renderManager, x1, x2, y1, y2]);
+        renderManager?.addObject(new RenderObject(ID.current, RenderObjectTypes.LINE, draw, path, events, params));
+    }, [events, fill, renderManager, stroke, x1, x2, y1, y2]);
     return null;
 };
 

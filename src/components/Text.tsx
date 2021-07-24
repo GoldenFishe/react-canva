@@ -6,7 +6,7 @@ import {BaseProps} from "./Canvas";
 import {RenderObject, RenderObjectTypes} from "../RenderObject";
 import {getEventHandlersFromProps} from "../utils";
 
-interface TextProps extends BaseProps {
+export interface TextProps extends BaseProps {
     x: number;
     y: number;
     text: string;
@@ -27,7 +27,14 @@ const Text: FC<TextProps> = (props) => {
     const events = getEventHandlersFromProps<TextProps>(props);
     useEffect(() => {
         const path = new Path2D();
-        const id = ID.current;
+        const params = {
+            x,
+            y,
+            text,
+            font,
+            stroke,
+            fill
+        };
         const draw = (ctx: CanvasRenderingContext2D) => {
             ctx.font = font;
             const {
@@ -35,16 +42,16 @@ const Text: FC<TextProps> = (props) => {
                 actualBoundingBoxAscent
             } = ctx.measureText(text);
             path.rect(x, y - actualBoundingBoxAscent, width, actualBoundingBoxAscent);
-            if (stroke) {
-                ctx.strokeStyle = stroke;
-                ctx.strokeText(text, x, y);
-            }
             if (fill) {
                 ctx.fillStyle = fill;
                 ctx.fillText(text, x, y);
             }
+            if (stroke) {
+                ctx.strokeStyle = stroke;
+                ctx.strokeText(text, x, y);
+            }
         };
-        renderManager?.addObject(new RenderObject(id, RenderObjectTypes.TEXT, draw, path, events));
+        renderManager?.addObject(new RenderObject(ID.current, RenderObjectTypes.TEXT, draw, path, events, params));
     }, [events, fill, font, renderManager, stroke, text, x, y]);
     return null;
 };

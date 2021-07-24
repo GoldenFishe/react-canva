@@ -27,17 +27,13 @@ const Canvas: FC = ({children}) => {
         if (canvasRef.current) {
             const currentCtx = canvasRef.current.getContext("2d");
             if (currentCtx) {
-                const DEFAULT_DPR = 1;
-                const dpr = window.devicePixelRatio || DEFAULT_DPR;
                 const rect = canvasRef.current.getBoundingClientRect();
-                canvasRef.current.width = Math.floor(rect.width * dpr);
-                canvasRef.current.height = Math.floor(rect.height * dpr);
-                currentCtx.scale(dpr, dpr);
+                canvasRef.current.width = rect.width;
+                canvasRef.current.height = rect.height;
                 setCtx(currentCtx);
             }
         }
     }, []);
-
     return (
         <>
             <canvas ref={canvasRef}
@@ -45,46 +41,47 @@ const Canvas: FC = ({children}) => {
                         width: "100%",
                         height: "100%"
                     }}
-                    onAuxClick={renderManager?.onEvent("onAuxClick")}
-                    onAuxClickCapture={renderManager?.onEvent("onAuxClickCapture")}
+                    // onAuxClick={renderManager?.onEvent("onAuxClick")}
+                    // onAuxClickCapture={renderManager?.onEvent("onAuxClickCapture")}
                     onClick={renderManager?.onEvent("onClick")}
-                    onClickCapture={renderManager?.onEvent("onClickCapture")}
+                    // onClickCapture={renderManager?.onEvent("onClickCapture")}
                     onContextMenu={renderManager?.onEvent("onContextMenu")}
-                    onContextMenuCapture={renderManager?.onEvent("onContextMenuCapture")}
+                    // onContextMenuCapture={renderManager?.onEvent("onContextMenuCapture")}
                     onDoubleClick={renderManager?.onEvent("onDoubleClick")}
-                    onDoubleClickCapture={renderManager?.onEvent("onDoubleClickCapture")}
+                    // onDoubleClickCapture={renderManager?.onEvent("onDoubleClickCapture")}
                     onMouseDown={renderManager?.onEvent("onMouseDown")}
-                    onMouseDownCapture={renderManager?.onEvent("onMouseDownCapture")}
-                    onMouseEnter={renderManager?.onEvent("onMouseEnter")}
-                    onMouseLeave={renderManager?.onEvent("onMouseLeave")}
+                    // onMouseDownCapture={renderManager?.onEvent("onMouseDownCapture")}
+                    // onMouseEnter={renderManager?.onEvent("onMouseEnter")}
+                    // onMouseLeave={renderManager?.onEvent("onMouseLeave")}
                     onMouseMove={renderManager?.onEvent("onMouseMove")}
-                    onMouseMoveCapture={renderManager?.onEvent("onMouseMoveCapture")}
-                    onMouseOut={renderManager?.onEvent("onMouseOut")}
-                    onMouseOutCapture={renderManager?.onEvent("onMouseOutCapture")}
-                    onMouseOver={renderManager?.onEvent("onMouseOver")}
-                    onMouseOverCapture={renderManager?.onEvent("onMouseOverCapture")}
+                    // onMouseMoveCapture={renderManager?.onEvent("onMouseMoveCapture")}
+                    // onMouseOut={renderManager?.onEvent("onMouseOut")}
+                    // onMouseOutCapture={renderManager?.onEvent("onMouseOutCapture")}
+                    // onMouseOver={renderManager?.onEvent("onMouseOver")}
+                    // onMouseOverCapture={renderManager?.onEvent("onMouseOverCapture")}
                     onMouseUp={renderManager?.onEvent("onMouseUp")}
-                    onMouseUpCapture={renderManager?.onEvent("onMouseUpCapture")}
+                    // onMouseUpCapture={renderManager?.onEvent("onMouseUpCapture")}
                     onPointerDown={renderManager?.onEvent("onPointerDown")}
-                    onPointerDownCapture={renderManager?.onEvent("onPointerDownCapture")}
-                    onPointerMove={renderManager?.onEvent("onPointerMove")}
-                    onPointerMoveCapture={renderManager?.onEvent("onPointerMoveCapture")}
-                    onPointerUp={renderManager?.onEvent("onPointerUp")}
-                    onPointerUpCapture={renderManager?.onEvent("onPointerUpCapture")}
-                    onPointerCancel={renderManager?.onEvent("onPointerCancel")}
-                    onPointerCancelCapture={renderManager?.onEvent("onPointerCancelCapture")}
-                    onPointerEnter={renderManager?.onEvent("onPointerEnter")}
-                    onPointerEnterCapture={renderManager?.onEvent("onPointerEnterCapture")}
-                    onPointerLeave={renderManager?.onEvent("onPointerLeave")}
-                    onPointerLeaveCapture={renderManager?.onEvent("onPointerLeaveCapture")}
-                    onPointerOver={renderManager?.onEvent("onPointerOver")}
-                    onPointerOverCapture={renderManager?.onEvent("onPointerOverCapture")}
-                    onPointerOut={renderManager?.onEvent("onPointerOut")}
-                    onPointerOutCapture={renderManager?.onEvent("onPointerOutCapture")}
-                    onGotPointerCapture={renderManager?.onEvent("onGotPointerCapture")}
-                    onGotPointerCaptureCapture={renderManager?.onEvent("onGotPointerCaptureCapture")}
-                    onLostPointerCapture={renderManager?.onEvent("onLostPointerCapture")}
-                    onLostPointerCaptureCapture={renderManager?.onEvent("onLostPointerCaptureCapture")}>
+                    // onPointerDownCapture={renderManager?.onEvent("onPointerDownCapture")}
+                    // onPointerMove={renderManager?.onEvent("onPointerMove")}
+                    // onPointerMoveCapture={renderManager?.onEvent("onPointerMoveCapture")}
+                    // onPointerUp={renderManager?.onEvent("onPointerUp")}
+                    // onPointerUpCapture={renderManager?.onEvent("onPointerUpCapture")}
+                    // onPointerCancel={renderManager?.onEvent("onPointerCancel")}
+                    // onPointerCancelCapture={renderManager?.onEvent("onPointerCancelCapture")}
+                    // onPointerEnter={renderManager?.onEvent("onPointerEnter")}
+                    // onPointerEnterCapture={renderManager?.onEvent("onPointerEnterCapture")}
+                    // onPointerLeave={renderManager?.onEvent("onPointerLeave")}
+                    // onPointerLeaveCapture={renderManager?.onEvent("onPointerLeaveCapture")}
+                    // onPointerOver={renderManager?.onEvent("onPointerOver")}
+                    // onPointerOverCapture={renderManager?.onEvent("onPointerOverCapture")}
+                    // onPointerOut={renderManager?.onEvent("onPointerOut")}
+                    // onPointerOutCapture={renderManager?.onEvent("onPointerOutCapture")}
+                    // onGotPointerCapture={renderManager?.onEvent("onGotPointerCapture")}
+                    // onGotPointerCaptureCapture={renderManager?.onEvent("onGotPointerCaptureCapture")}
+                    // onLostPointerCapture={renderManager?.onEvent("onLostPointerCapture")}
+                    // onLostPointerCaptureCapture={renderManager?.onEvent("onLostPointerCaptureCapture")}
+            >
                 Извините, ваш браузер нет поддерживает&lt;canvas&gt; элемент.
             </canvas>
             {ctx ? <RenderContext.Provider value={renderManager}>{children}</RenderContext.Provider> : null}

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { BaseProps } from "./Canvas";
-interface ArcProps extends BaseProps {
+export interface ArcProps extends BaseProps {
     x: number;
     y: number;
     radius: number;

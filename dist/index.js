@@ -29,26 +29,18 @@
             }
             this.draw();
         };
-        RenderManager.prototype.draw = function () {
-            this.clear();
-            for (var i = 0; i < this.objects.length; i++) {
-                var object = this.objects[i];
-                this.resetStyle();
-                object.draw(this.ctx);
-            }
-        };
         RenderManager.prototype.onEvent = function (eventName) {
-            var self = this;
-            return function eventHandler(event) {
+            var _this = this;
+            return function (event) {
                 var _a = event.nativeEvent, offsetX = _a.offsetX, offsetY = _a.offsetY;
-                for (var i = 0; i < self.objects.length; i++) {
-                    var object = self.objects[i];
-                    var eventHandler_1 = object.events[eventName];
-                    if (object.path && eventHandler_1) {
-                        var pointInPath = self.ctx.isPointInPath(object.path, offsetX, offsetY);
-                        var pointInStroke = self.ctx.isPointInStroke(object.path, offsetX, offsetY);
+                for (var i = 0; i < _this.objects.length; i++) {
+                    var object = _this.objects[i];
+                    var eventHandler = object.events[eventName];
+                    if (object.path && eventHandler) {
+                        var pointInPath = _this.ctx.isPointInPath(object.path, offsetX, offsetY);
+                        var pointInStroke = _this.ctx.isPointInStroke(object.path, offsetX, offsetY);
                         if (pointInPath || pointInStroke) {
-                            eventHandler_1({
+                            eventHandler({
                                 id: object.id,
                                 type: object.type,
                                 eventType: eventName,
@@ -58,6 +50,14 @@
                     }
                 }
             };
+        };
+        RenderManager.prototype.draw = function () {
+            this.clear();
+            for (var i = 0; i < this.objects.length; i++) {
+                var object = this.objects[i];
+                this.resetStyle();
+                object.draw(this.ctx);
+            }
         };
         RenderManager.prototype.resetStyle = function () {
             this.ctx.strokeStyle = "#000";
@@ -90,12 +90,9 @@
             if (canvasRef.current) {
                 var currentCtx = canvasRef.current.getContext("2d");
                 if (currentCtx) {
-                    var DEFAULT_DPR = 1;
-                    var dpr = window.devicePixelRatio || DEFAULT_DPR;
                     var rect = canvasRef.current.getBoundingClientRect();
-                    canvasRef.current.width = Math.floor(rect.width * dpr);
-                    canvasRef.current.height = Math.floor(rect.height * dpr);
-                    currentCtx.scale(dpr, dpr);
+                    canvasRef.current.width = rect.width;
+                    canvasRef.current.height = rect.height;
                     setCtx(currentCtx);
                 }
             }
@@ -104,7 +101,28 @@
             React__default['default'].createElement("canvas", { ref: canvasRef, style: {
                     width: "100%",
                     height: "100%"
-                }, onAuxClick: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onAuxClick"), onAuxClickCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onAuxClickCapture"), onClick: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onClick"), onClickCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onClickCapture"), onContextMenu: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onContextMenu"), onContextMenuCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onContextMenuCapture"), onDoubleClick: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onDoubleClick"), onDoubleClickCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onDoubleClickCapture"), onMouseDown: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseDown"), onMouseDownCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseDownCapture"), onMouseEnter: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseEnter"), onMouseLeave: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseLeave"), onMouseMove: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseMove"), onMouseMoveCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseMoveCapture"), onMouseOut: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseOut"), onMouseOutCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseOutCapture"), onMouseOver: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseOver"), onMouseOverCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseOverCapture"), onMouseUp: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseUp"), onMouseUpCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseUpCapture"), onPointerDown: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerDown"), onPointerDownCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerDownCapture"), onPointerMove: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerMove"), onPointerMoveCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerMoveCapture"), onPointerUp: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerUp"), onPointerUpCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerUpCapture"), onPointerCancel: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerCancel"), onPointerCancelCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerCancelCapture"), onPointerEnter: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerEnter"), onPointerEnterCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerEnterCapture"), onPointerLeave: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerLeave"), onPointerLeaveCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerLeaveCapture"), onPointerOver: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerOver"), onPointerOverCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerOverCapture"), onPointerOut: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerOut"), onPointerOutCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerOutCapture"), onGotPointerCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onGotPointerCapture"), onGotPointerCaptureCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onGotPointerCaptureCapture"), onLostPointerCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onLostPointerCapture"), onLostPointerCaptureCapture: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onLostPointerCaptureCapture") }, "\u0418\u0437\u0432\u0438\u043D\u0438\u0442\u0435, \u0432\u0430\u0448 \u0431\u0440\u0430\u0443\u0437\u0435\u0440 \u043D\u0435\u0442 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442<canvas> \u044D\u043B\u0435\u043C\u0435\u043D\u0442."),
+                }, 
+                // onAuxClick={renderManager?.onEvent("onAuxClick")}
+                // onAuxClickCapture={renderManager?.onEvent("onAuxClickCapture")}
+                onClick: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onClick"), 
+                // onClickCapture={renderManager?.onEvent("onClickCapture")}
+                onContextMenu: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onContextMenu"), 
+                // onContextMenuCapture={renderManager?.onEvent("onContextMenuCapture")}
+                onDoubleClick: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onDoubleClick"), 
+                // onDoubleClickCapture={renderManager?.onEvent("onDoubleClickCapture")}
+                onMouseDown: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseDown"), 
+                // onMouseDownCapture={renderManager?.onEvent("onMouseDownCapture")}
+                // onMouseEnter={renderManager?.onEvent("onMouseEnter")}
+                // onMouseLeave={renderManager?.onEvent("onMouseLeave")}
+                onMouseMove: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseMove"), 
+                // onMouseMoveCapture={renderManager?.onEvent("onMouseMoveCapture")}
+                // onMouseOut={renderManager?.onEvent("onMouseOut")}
+                // onMouseOutCapture={renderManager?.onEvent("onMouseOutCapture")}
+                // onMouseOver={renderManager?.onEvent("onMouseOver")}
+                // onMouseOverCapture={renderManager?.onEvent("onMouseOverCapture")}
+                onMouseUp: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseUp"), 
+                // onMouseUpCapture={renderManager?.onEvent("onMouseUpCapture")}
+                onPointerDown: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onPointerDown") }, "\u0418\u0437\u0432\u0438\u043D\u0438\u0442\u0435, \u0432\u0430\u0448 \u0431\u0440\u0430\u0443\u0437\u0435\u0440 \u043D\u0435\u0442 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442<canvas> \u044D\u043B\u0435\u043C\u0435\u043D\u0442."),
             ctx ? React__default['default'].createElement(RenderContext.Provider, { value: renderManager }, children) : null));
     };
 
@@ -137,6 +155,7 @@
       return id
     };
 
+    // eslint-disable-next-line no-shadow
     var RenderObjectTypes;
     (function (RenderObjectTypes) {
         RenderObjectTypes["TEXT"] = "TEXT";
@@ -145,12 +164,13 @@
         RenderObjectTypes["LINE"] = "LINE";
     })(RenderObjectTypes || (RenderObjectTypes = {}));
     var RenderObject = /** @class */ (function () {
-        function RenderObject(id, type, draw, path, events) {
+        function RenderObject(id, type, draw, path, events, params) {
             this.id = id;
             this.type = type;
             this.draw = draw;
             this.path = path;
             this.events = events;
+            this.params = params;
         }
         return RenderObject;
     }());
@@ -166,6 +186,16 @@
         }
         return events;
     }
+    function drawAtCanvas(ctx, path, stroke, fill) {
+        if (fill) {
+            ctx.fillStyle = fill;
+            ctx.fill(path);
+        }
+        if (stroke) {
+            ctx.strokeStyle = stroke;
+            ctx.stroke(path);
+        }
+    }
 
     var Rect = function (props) {
         var x = props.x, y = props.y, width = props.width, height = props.height, stroke = props.stroke, fill = props.fill;
@@ -174,46 +204,21 @@
         var events = getEventHandlersFromProps(props);
         React.useEffect(function () {
             var path = new Path2D();
-            var id = ID.current;
+            var params = {
+                x: x,
+                y: y,
+                width: width,
+                height: height,
+                stroke: stroke,
+                fill: fill
+            };
             var draw = function (ctx) {
                 path.rect(x, y, width, height);
-                if (stroke) {
-                    ctx.strokeStyle = stroke;
-                    ctx.stroke(path);
-                }
-                if (fill) {
-                    ctx.fillStyle = fill;
-                    ctx.fill(path);
-                }
+                drawAtCanvas(ctx, path, stroke, fill);
             };
-            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(id, RenderObjectTypes.RECT, draw, path, events));
+            var renderObject = new RenderObject(ID.current, RenderObjectTypes.RECT, draw, path, events, params);
+            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(renderObject);
         }, [events, fill, height, renderManager, stroke, width, x, y]);
-        return null;
-    };
-
-    var Text = function (props) {
-        var x = props.x, y = props.y, text = props.text, font = props.font, stroke = props.stroke, fill = props.fill;
-        var renderManager = React.useContext(RenderContext);
-        var ID = React.useRef(nanoid());
-        var events = getEventHandlersFromProps(props);
-        React.useEffect(function () {
-            var path = new Path2D();
-            var id = ID.current;
-            var draw = function (ctx) {
-                ctx.font = font;
-                var _a = ctx.measureText(text), width = _a.width, actualBoundingBoxAscent = _a.actualBoundingBoxAscent;
-                path.rect(x, y - actualBoundingBoxAscent, width, actualBoundingBoxAscent);
-                if (stroke) {
-                    ctx.strokeStyle = stroke;
-                    ctx.strokeText(text, x, y);
-                }
-                if (fill) {
-                    ctx.fillStyle = fill;
-                    ctx.fillText(text, x, y);
-                }
-            };
-            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(id, RenderObjectTypes.TEXT, draw, path, events));
-        }, [events, fill, font, renderManager, stroke, text, x, y]);
         return null;
     };
 
@@ -224,38 +229,80 @@
         var events = getEventHandlersFromProps(props);
         React.useEffect(function () {
             var path = new Path2D();
-            var id = ID.current;
+            var params = {
+                x: x,
+                y: y,
+                radius: radius,
+                startAngle: startAngle,
+                endAngle: endAngle,
+                anticlockwise: anticlockwise,
+                stroke: stroke,
+                fill: fill
+            };
             var draw = function (ctx) {
                 path.arc(x, y, radius, startAngle, endAngle, anticlockwise);
-                if (stroke) {
-                    ctx.strokeStyle = stroke;
-                    ctx.stroke(path);
-                }
-                if (fill) {
-                    ctx.fillStyle = fill;
-                    ctx.fill(path);
-                }
+                drawAtCanvas(ctx, path, stroke, fill);
             };
-            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(id, RenderObjectTypes.ARC, draw, path, events));
+            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(ID.current, RenderObjectTypes.ARC, draw, path, events, params));
         }, [anticlockwise, endAngle, events, fill, radius, renderManager, startAngle, stroke, x, y]);
         return null;
     };
 
     var Line = function (props) {
-        var x1 = props.x1, y1 = props.y1, x2 = props.x2, y2 = props.y2; props.stroke; props.fill;
+        var x1 = props.x1, y1 = props.y1, x2 = props.x2, y2 = props.y2, stroke = props.stroke, fill = props.fill;
         var renderManager = React.useContext(RenderContext);
         var ID = React.useRef(nanoid());
         var events = getEventHandlersFromProps(props);
         React.useEffect(function () {
             var path = new Path2D();
-            var id = ID.current;
+            var params = {
+                x1: x1,
+                y1: y1,
+                x2: x2,
+                y2: y2,
+                stroke: stroke,
+                fill: fill
+            };
             var draw = function (ctx) {
                 path.moveTo(x1, y1);
                 path.lineTo(x2, y2);
                 ctx.stroke(path);
             };
-            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(id, RenderObjectTypes.LINE, draw, path, events));
-        }, [events, renderManager, x1, x2, y1, y2]);
+            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(ID.current, RenderObjectTypes.LINE, draw, path, events, params));
+        }, [events, fill, renderManager, stroke, x1, x2, y1, y2]);
+        return null;
+    };
+
+    var Text = function (props) {
+        var x = props.x, y = props.y, text = props.text, font = props.font, stroke = props.stroke, fill = props.fill;
+        var renderManager = React.useContext(RenderContext);
+        var ID = React.useRef(nanoid());
+        var events = getEventHandlersFromProps(props);
+        React.useEffect(function () {
+            var path = new Path2D();
+            var params = {
+                x: x,
+                y: y,
+                text: text,
+                font: font,
+                stroke: stroke,
+                fill: fill
+            };
+            var draw = function (ctx) {
+                ctx.font = font;
+                var _a = ctx.measureText(text), width = _a.width, actualBoundingBoxAscent = _a.actualBoundingBoxAscent;
+                path.rect(x, y - actualBoundingBoxAscent, width, actualBoundingBoxAscent);
+                if (fill) {
+                    ctx.fillStyle = fill;
+                    ctx.fillText(text, x, y);
+                }
+                if (stroke) {
+                    ctx.strokeStyle = stroke;
+                    ctx.strokeText(text, x, y);
+                }
+            };
+            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(ID.current, RenderObjectTypes.TEXT, draw, path, events, params));
+        }, [events, fill, font, renderManager, stroke, text, x, y]);
         return null;
     };
 
