@@ -1,8 +1,8 @@
-docs
-demo
-node_modules
 .idea
+docs
+node_modules
+src
+.eslintrc.js
+.gitignore
 rollup.config.js
 tsconfig.json
-.eslint.rc
-src
