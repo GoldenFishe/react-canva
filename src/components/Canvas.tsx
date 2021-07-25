@@ -53,7 +53,7 @@ const Canvas: FC = ({children}) => {
                     // onMouseDownCapture={renderManager?.onEvent("onMouseDownCapture")}
                     // onMouseEnter={renderManager?.onEvent("onMouseEnter")}
                     // onMouseLeave={renderManager?.onEvent("onMouseLeave")}
-                    onMouseMove={renderManager?.onEvent("onMouseMove")}
+                    // onMouseMove={renderManager?.onEvent("onMouseMove")}
                     // onMouseMoveCapture={renderManager?.onEvent("onMouseMoveCapture")}
                     // onMouseOut={renderManager?.onEvent("onMouseOut")}
                     // onMouseOutCapture={renderManager?.onEvent("onMouseOutCapture")}

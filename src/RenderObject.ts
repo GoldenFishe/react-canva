@@ -1,4 +1,4 @@
-import {Events, Params} from "./Types";
+import {Events, Params, RenderObjectTypes} from "./Types";
 
 export interface IRenderObject {
     id: string;
@@ -7,14 +7,6 @@ export interface IRenderObject {
     path: Path2D;
     events: Events;
     params: Params;
-}
-
-// eslint-disable-next-line no-shadow
-export enum RenderObjectTypes {
-    TEXT = "TEXT",
-    ARC = "ARC",
-    RECT = "RECT",
-    LINE = "LINE"
 }
 
 export class RenderObject implements IRenderObject {

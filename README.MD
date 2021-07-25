@@ -2,7 +2,7 @@
 ![npm bundle size](https://img.shields.io/bundlephobia/min/react-canva?color=green)
 #### (Project in development)
 
-# [Demo/Sandbox](https://goldenfishe.github.io/react-canva/)
+## [Demo/Sandbox](https://goldenfishe.github.io/react-canva/)
 
 React-Canva is a JavaScript library for drawing complex canvas graphics using
 [React](http://facebook.github.io/react/).
@@ -68,3 +68,60 @@ render(<App/>, document.getElementById('root'));
 ```
 
 ## Core API
+### Supported Events
+* `onClick`
+* `onContextMenu`
+* `onDoubleClick`
+* `onMouseDown`
+* `onMouseUp`
+* `onPointerDown`
+### Base Props
+```javascript
+export interface BaseProps {
+    stroke?: string;
+    fill?: string;
+    lineCap?: CanvasLineCap;
+    lineDashOffset?: number;
+    lineJoin?: CanvasLineJoin;
+    lineWidth?: number;
+    miterLimit?: number;
+}
+```
+### Rect
+```javascript
+export interface RectProps extends BaseProps {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+}
+```
+### Arc
+```javascript
+export interface ArcProps extends BaseProps {
+    x: number;
+    y: number;
+    radius: number;
+    startAngle: number;
+    endAngle: number;
+    anticlockwise?: boolean;
+}
+```
+### Line
+```javascript
+export interface LineProps extends BaseProps {
+    x1: number;
+    y1: number;
+    x2: number;
+    y2: number;
+}
+```
+### Text
+```javascript
+export interface TextProps extends BaseProps {
+    x: number;
+    y: number;
+    text: string;
+    font: string;
+}
+```

@@ -114,7 +114,7 @@
                 // onMouseDownCapture={renderManager?.onEvent("onMouseDownCapture")}
                 // onMouseEnter={renderManager?.onEvent("onMouseEnter")}
                 // onMouseLeave={renderManager?.onEvent("onMouseLeave")}
-                onMouseMove: renderManager === null || renderManager === void 0 ? void 0 : renderManager.onEvent("onMouseMove"), 
+                // onMouseMove={renderManager?.onEvent("onMouseMove")}
                 // onMouseMoveCapture={renderManager?.onEvent("onMouseMoveCapture")}
                 // onMouseOut={renderManager?.onEvent("onMouseOut")}
                 // onMouseOutCapture={renderManager?.onEvent("onMouseOutCapture")}
@@ -155,14 +155,6 @@
       return id
     };
 
-    // eslint-disable-next-line no-shadow
-    var RenderObjectTypes;
-    (function (RenderObjectTypes) {
-        RenderObjectTypes["TEXT"] = "TEXT";
-        RenderObjectTypes["ARC"] = "ARC";
-        RenderObjectTypes["RECT"] = "RECT";
-        RenderObjectTypes["LINE"] = "LINE";
-    })(RenderObjectTypes || (RenderObjectTypes = {}));
     var RenderObject = /** @class */ (function () {
         function RenderObject(id, type, draw, path, events, params) {
             this.id = id;
@@ -197,6 +189,15 @@
         }
     }
 
+    // eslint-disable-next-line no-shadow
+    exports.RenderObjectTypes = void 0;
+    (function (RenderObjectTypes) {
+        RenderObjectTypes["TEXT"] = "TEXT";
+        RenderObjectTypes["ARC"] = "ARC";
+        RenderObjectTypes["RECT"] = "RECT";
+        RenderObjectTypes["LINE"] = "LINE";
+    })(exports.RenderObjectTypes || (exports.RenderObjectTypes = {}));
+
     var Rect = function (props) {
         var x = props.x, y = props.y, width = props.width, height = props.height, stroke = props.stroke, fill = props.fill;
         var renderManager = React.useContext(RenderContext);
@@ -216,7 +217,7 @@
                 path.rect(x, y, width, height);
                 drawAtCanvas(ctx, path, stroke, fill);
             };
-            var renderObject = new RenderObject(ID.current, RenderObjectTypes.RECT, draw, path, events, params);
+            var renderObject = new RenderObject(ID.current, exports.RenderObjectTypes.RECT, draw, path, events, params);
             renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(renderObject);
         }, [events, fill, height, renderManager, stroke, width, x, y]);
         return null;
@@ -243,7 +244,7 @@
                 path.arc(x, y, radius, startAngle, endAngle, anticlockwise);
                 drawAtCanvas(ctx, path, stroke, fill);
             };
-            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(ID.current, RenderObjectTypes.ARC, draw, path, events, params));
+            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(ID.current, exports.RenderObjectTypes.ARC, draw, path, events, params));
         }, [anticlockwise, endAngle, events, fill, radius, renderManager, startAngle, stroke, x, y]);
         return null;
     };
@@ -268,7 +269,7 @@
                 path.lineTo(x2, y2);
                 ctx.stroke(path);
             };
-            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(ID.current, RenderObjectTypes.LINE, draw, path, events, params));
+            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(ID.current, exports.RenderObjectTypes.LINE, draw, path, events, params));
         }, [events, fill, renderManager, stroke, x1, x2, y1, y2]);
         return null;
     };
@@ -301,7 +302,7 @@
                     ctx.strokeText(text, x, y);
                 }
             };
-            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(ID.current, RenderObjectTypes.TEXT, draw, path, events, params));
+            renderManager === null || renderManager === void 0 ? void 0 : renderManager.addObject(new RenderObject(ID.current, exports.RenderObjectTypes.TEXT, draw, path, events, params));
         }, [events, fill, font, renderManager, stroke, text, x, y]);
         return null;
     };

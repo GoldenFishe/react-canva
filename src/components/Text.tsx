@@ -3,8 +3,9 @@ import {nanoid} from "nanoid";
 
 import {RenderContext} from "../RenderContext";
 import {BaseProps} from "./Canvas";
-import {RenderObject, RenderObjectTypes} from "../RenderObject";
+import {RenderObject} from "../RenderObject";
 import {getEventHandlersFromProps} from "../utils";
+import {RenderObjectTypes} from "../Types";
 
 export interface TextProps extends BaseProps {
     x: number;

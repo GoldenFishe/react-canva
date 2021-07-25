@@ -16,6 +16,14 @@ export type ArcParams = Pick<ArcProps, "stroke" | "fill">;
 export type LineParams = Pick<LineProps, "stroke" | "fill">;
 export type TextParams = Pick<TextProps, "stroke" | "fill">;
 
+// eslint-disable-next-line no-shadow
+export enum RenderObjectTypes {
+    TEXT = "TEXT",
+    ARC = "ARC",
+    RECT = "RECT",
+    LINE = "LINE"
+}
+
 export interface Events {
     onAuxClick?: (object: EventRenderObject) => void;
     onAuxClickCapture?: (object: EventRenderObject) => void;

@@ -15,6 +15,12 @@ export declare type RectParams = Pick<RectProps, "stroke" | "fill">;
 export declare type ArcParams = Pick<ArcProps, "stroke" | "fill">;
 export declare type LineParams = Pick<LineProps, "stroke" | "fill">;
 export declare type TextParams = Pick<TextProps, "stroke" | "fill">;
+export declare enum RenderObjectTypes {
+    TEXT = "TEXT",
+    ARC = "ARC",
+    RECT = "RECT",
+    LINE = "LINE"
+}
 export interface Events {
     onAuxClick?: (object: EventRenderObject) => void;
     onAuxClickCapture?: (object: EventRenderObject) => void;

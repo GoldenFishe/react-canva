@@ -3,8 +3,9 @@ import {nanoid} from "nanoid";
 
 import {BaseProps} from "./Canvas";
 import {RenderContext} from "../RenderContext";
-import {RenderObject, RenderObjectTypes} from "../RenderObject";
+import {RenderObject} from "../RenderObject";
 import {drawAtCanvas, getEventHandlersFromProps} from "../utils";
+import {RenderObjectTypes} from "../Types";
 
 export interface ArcProps extends BaseProps {
     x: number;

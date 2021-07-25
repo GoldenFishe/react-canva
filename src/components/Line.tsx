@@ -2,9 +2,10 @@ import {FC, useContext, useEffect, useRef} from "react";
 import {nanoid} from "nanoid";
 
 import {RenderContext} from "../RenderContext";
-import {RenderObject, RenderObjectTypes} from "../RenderObject";
+import {RenderObject} from "../RenderObject";
 import {BaseProps} from "./Canvas";
 import {getEventHandlersFromProps} from "../utils";
+import {RenderObjectTypes} from "../Types";
 
 export interface LineProps extends BaseProps {
     x1: number;

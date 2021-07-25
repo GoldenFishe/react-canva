@@ -1,4 +1,4 @@
-import { Events, Params } from "./Types";
+import { Events, Params, RenderObjectTypes } from "./Types";
 export interface IRenderObject {
     id: string;
     type: RenderObjectTypes;
@@ -6,12 +6,6 @@ export interface IRenderObject {
     path: Path2D;
     events: Events;
     params: Params;
-}
-export declare enum RenderObjectTypes {
-    TEXT = "TEXT",
-    ARC = "ARC",
-    RECT = "RECT",
-    LINE = "LINE"
 }
 export declare class RenderObject implements IRenderObject {
     id: string;
