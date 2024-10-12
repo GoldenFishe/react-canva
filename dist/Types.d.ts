@@ -4,17 +4,17 @@ import { RectProps } from "./components/Rect";
 import { ArcProps } from "./components/Arc";
 import { LineProps } from "./components/Line";
 import { TextProps } from "./components/Text";
-export declare type EventName = keyof Events;
-export declare type Event = MouseEvent | PointerEvent;
-export declare type EventRenderObject = Pick<IRenderObject, "id" | "type"> & {
+export type EventName = keyof Events;
+export type Event = MouseEvent | PointerEvent;
+export type EventRenderObject = Pick<IRenderObject, "id" | "type"> & {
     event: Event;
     eventType: EventName;
 };
-export declare type Params = RectParams | ArcParams | LineParams | TextParams;
-export declare type RectParams = Pick<RectProps, "stroke" | "fill">;
-export declare type ArcParams = Pick<ArcProps, "stroke" | "fill">;
-export declare type LineParams = Pick<LineProps, "stroke" | "fill">;
-export declare type TextParams = Pick<TextProps, "stroke" | "fill">;
+export type Params = RectParams | ArcParams | LineParams | TextParams;
+export type RectParams = Pick<RectProps, "stroke" | "fill">;
+export type ArcParams = Pick<ArcProps, "stroke" | "fill">;
+export type LineParams = Pick<LineProps, "stroke" | "fill">;
+export type TextParams = Pick<TextProps, "stroke" | "fill">;
 export declare enum RenderObjectTypes {
     TEXT = "TEXT",
     ARC = "ARC",

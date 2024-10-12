@@ -1,4 +1,6 @@
 # React-Canva
+![npm version](https://badge.fury.io/js/react-canva.svg)
+![npm](https://img.shields.io/npm/dm/react-canva)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/react-canva?color=green)
 #### (Project in development)
 

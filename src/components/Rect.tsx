@@ -1,5 +1,4 @@
-import {FC, useContext, useEffect, useRef} from "react";
-import {nanoid} from "nanoid";
+import {FC, useContext, useEffect, useId} from "react";
 
 import {RenderContext} from "../RenderContext";
 import {BaseProps} from "./Canvas";
@@ -24,7 +23,7 @@ const Rect: FC<RectProps> = (props) => {
         fill
     } = props;
     const renderManager = useContext(RenderContext);
-    const ID = useRef(nanoid());
+    const ID = useId();
     const events = getEventHandlersFromProps<RectProps>(props);
     useEffect(() => {
         const path = new Path2D();
@@ -40,7 +39,7 @@ const Rect: FC<RectProps> = (props) => {
             path.rect(x, y, width, height);
             drawAtCanvas(ctx, path, stroke, fill);
         };
-        const renderObject = new RenderObject(ID.current, RenderObjectTypes.RECT, draw, path, events, params);
+        const renderObject = new RenderObject(ID, RenderObjectTypes.RECT, draw, path, events, params);
         renderManager?.addObject(renderObject);
     }, [events, fill, height, renderManager, stroke, width, x, y]);
     return null;

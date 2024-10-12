@@ -1,5 +1,4 @@
-import {FC, useContext, useEffect, useRef} from "react";
-import {nanoid} from "nanoid";
+import {FC, useContext, useEffect, useId} from "react";
 
 import {RenderContext} from "../RenderContext";
 import {RenderObject} from "../RenderObject";
@@ -24,7 +23,7 @@ const Line: FC<LineProps> = (props) => {
         fill
     } = props;
     const renderManager = useContext(RenderContext);
-    const ID = useRef(nanoid());
+    const ID = useId();
     const events = getEventHandlersFromProps<LineProps>(props);
     useEffect(() => {
         const path = new Path2D();
@@ -41,7 +40,7 @@ const Line: FC<LineProps> = (props) => {
             path.lineTo(x2, y2);
             ctx.stroke(path);
         };
-        renderManager?.addObject(new RenderObject(ID.current, RenderObjectTypes.LINE, draw, path, events, params));
+        renderManager?.addObject(new RenderObject(ID, RenderObjectTypes.LINE, draw, path, events, params));
     }, [events, fill, renderManager, stroke, x1, x2, y1, y2]);
     return null;
 };

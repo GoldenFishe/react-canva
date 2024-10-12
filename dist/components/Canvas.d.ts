@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ReactNode } from "react";
 import { Events } from "../Types";
 export interface BaseProps extends Events {
     stroke?: string;
@@ -9,5 +9,7 @@ export interface BaseProps extends Events {
     lineWidth?: number;
     miterLimit?: number;
 }
-declare const Canvas: FC;
+declare const Canvas: ({ children }: {
+    children: ReactNode;
+}) => import("react/jsx-runtime").JSX.Element;
 export default Canvas;

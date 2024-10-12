@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useMemo, useRef, useState} from "react";
+import {ReactNode, useEffect, useMemo, useRef, useState} from "react";
 
 import {RenderContext} from "../RenderContext";
 import {RenderManager} from "../RenderManager";
@@ -14,7 +14,7 @@ export interface BaseProps extends Events {
     miterLimit?: number;
 }
 
-const Canvas: FC = ({children}) => {
+const Canvas = ({children}: { children: ReactNode }) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const [ctx, setCtx] = useState<CanvasRenderingContext2D | null>(null);
     const renderManager = useMemo(() => {

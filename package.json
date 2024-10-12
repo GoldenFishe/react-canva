@@ -1,8 +1,9 @@
 {
   "name": "react-canva",
-  "version": "0.0.5",
+  "version": "0.1.5",
   "description": "<canvas> rendering for React",
   "main": "./dist/index.js",
+  "exports": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build:watch": "rollup -c -w",
@@ -25,29 +26,19 @@
   "author": "Riazanov Anton <ag.riazanov@gmail.com>",
   "homepage": "https://github.com/GoldenFishe/react-canva",
   "license": "MIT",
+  "type": "module",
   "devDependencies": {
-    "@babel/core": "^7.14.8",
-    "@babel/preset-env": "^7.14.8",
-    "@babel/preset-react": "^7.14.5",
-    "@rollup/plugin-commonjs": "^19.0.1",
-    "@rollup/plugin-node-resolve": "^13.0.2",
-    "@rollup/plugin-typescript": "^8.2.3",
-    "@tsconfig/recommended": "^1.0.1",
-    "@types/react": "^16.8.0",
-    "@types/react-dom": "^16.8.0",
-    "@typescript-eslint/eslint-plugin": "^4.28.4",
-    "@typescript-eslint/parser": "^4.28.4",
-    "eslint": "^7.31.0",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "nanoid": "^3.1.22",
-    "rollup": "^2.53.3",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "tslib": "^2.2.0",
-    "typescript": "^4.3.5"
+    "@rollup/plugin-commonjs": "^28.0.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.0",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "rollup": "^4.24.0",
+    "typescript": "^5.6.3"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }

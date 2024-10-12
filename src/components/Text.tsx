@@ -1,5 +1,4 @@
-import {FC, useContext, useEffect, useRef} from "react";
-import {nanoid} from "nanoid";
+import {FC, useContext, useEffect, useId} from "react";
 
 import {RenderContext} from "../RenderContext";
 import {BaseProps} from "./Canvas";
@@ -24,7 +23,7 @@ const Text: FC<TextProps> = (props) => {
         fill
     } = props;
     const renderManager = useContext(RenderContext);
-    const ID = useRef(nanoid());
+    const ID = useId();
     const events = getEventHandlersFromProps<TextProps>(props);
     useEffect(() => {
         const path = new Path2D();
@@ -52,7 +51,7 @@ const Text: FC<TextProps> = (props) => {
                 ctx.strokeText(text, x, y);
             }
         };
-        renderManager?.addObject(new RenderObject(ID.current, RenderObjectTypes.TEXT, draw, path, events, params));
+        renderManager?.addObject(new RenderObject(ID, RenderObjectTypes.TEXT, draw, path, events, params));
     }, [events, fill, font, renderManager, stroke, text, x, y]);
     return null;
 };

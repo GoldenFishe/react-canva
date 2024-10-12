@@ -1,24 +1,31 @@
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
+import terser from "@rollup/plugin-terser";
 
-export default {
+/**
+ * @type {import("rollup").RollupOptions}
+ */
+const config = {
     input: "src/index.ts",
-    output: {
-        file: "./dist/index.js",
-        name: "react-canva",
-        format: "umd",
-        sourcemap: false,
-        globals: {
-            "react": "React"
+    external: ["react", "react-dom"],
+    output: [
+        {
+            format: "cjs",
+            file: "dist/index.js",
+            exports: "named"
+        },
+        {
+            format: "es",
+            file: "dist/index.es.js"
         }
-    },
-    plugins: [
-        peerDepsExternal(),
-        resolve({browser: true}),
-        commonjs(),
-        typescript({tsconfig: "./tsconfig.json"})
     ],
-    external: ["react"]
+    plugins: [
+        resolve({extensions: [".js", ".jsx", ".ts", ".tsx"]}),
+        commonjs(),
+        typescript(),
+        terser()
+    ]
 };
+
+export default config;
